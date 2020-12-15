@@ -9,16 +9,17 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    
+    let imageDirectoryLoader = ImageDirectoryLoader()
+
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+      super.viewDidLoad()
+      let initialFolderUrl:NSURL = NSURL.fileURL(withPath: "/Users/dongwu/Desktop/pictures", isDirectory: true) as NSURL
+      imageDirectoryLoader.loadDataForFolderWithUrl(folderURL: initialFolderUrl)
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    
+    func loadDataForNewFolderWithUrl(folderURL: NSURL) {
+      imageDirectoryLoader.loadDataForFolderWithUrl(folderURL: folderURL)
     }
 
 
