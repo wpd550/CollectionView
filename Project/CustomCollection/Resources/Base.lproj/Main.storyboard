@@ -769,14 +769,38 @@
                                     <action selector="removeSlideWithSender:" target="XfG-lQ-9wD" id="aol-BV-GuP"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2HV-2g-6bf">
+                                <rect key="frame" x="168" y="-5" width="90" height="32"/>
+                                <buttonCell key="cell" type="push" title="select All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FtO-pz-WZL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectAll:" target="9l7-5n-CPZ" id="aBr-Pt-yFM"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mNv-V1-yqF">
+                                <rect key="frame" x="251" y="-4" width="103" height="32"/>
+                                <buttonCell key="cell" type="push" title="deselect all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hTX-2a-Ewz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deselectAll:" target="9l7-5n-CPZ" id="QM7-Lo-taj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="3WD-Lj-qfV"/>
                             <constraint firstItem="myH-cS-pW9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="4DD-W1-RdA"/>
+                            <constraint firstItem="2HV-2g-6bf" firstAttribute="top" secondItem="myH-cS-pW9" secondAttribute="top" id="5cf-Rp-WRx"/>
+                            <constraint firstItem="mNv-V1-yqF" firstAttribute="leading" secondItem="2HV-2g-6bf" secondAttribute="trailing" constant="7" id="Img-bC-pAE"/>
                             <constraint firstItem="Ulb-Zd-7Fs" firstAttribute="baseline" secondItem="JUf-AI-O4E" secondAttribute="baseline" id="aXI-cu-DkE"/>
                             <constraint firstAttribute="bottom" secondItem="Aq8-it-2XB" secondAttribute="bottom" constant="30" id="cQh-s2-yHx"/>
+                            <constraint firstItem="Ulb-Zd-7Fs" firstAttribute="leading" secondItem="mNv-V1-yqF" secondAttribute="trailing" constant="12" symbolic="YES" id="cYw-tl-yFz"/>
                             <constraint firstAttribute="trailing" secondItem="Aq8-it-2XB" secondAttribute="trailing" id="cns-Yl-4xK"/>
                             <constraint firstItem="JUf-AI-O4E" firstAttribute="centerY" secondItem="myH-cS-pW9" secondAttribute="centerY" id="htz-Fd-cx4"/>
+                            <constraint firstItem="mNv-V1-yqF" firstAttribute="baseline" secondItem="myH-cS-pW9" secondAttribute="baseline" id="ou4-44-QTL"/>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="qXo-5q-vnE"/>
                             <constraint firstItem="myH-cS-pW9" firstAttribute="top" secondItem="Aq8-it-2XB" secondAttribute="bottom" constant="8" symbolic="YES" id="tug-af-cKy"/>
                             <constraint firstItem="JUf-AI-O4E" firstAttribute="leading" secondItem="Ulb-Zd-7Fs" secondAttribute="trailing" constant="1" id="u7x-SE-LU6"/>

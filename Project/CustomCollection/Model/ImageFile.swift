@@ -10,8 +10,9 @@ import Cocoa
 class ImageFile {
     private(set) var thumbnail:NSImage?
     private(set) var fileName:String
-    
+    private(set) var url:NSURL
     init(url:NSURL) {
+        self.url = url
         if let name = url.lastPathComponent {
           fileName = name
         } else {
