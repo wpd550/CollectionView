@@ -11,19 +11,27 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var collectionView:NSCollectionView!
     
+    @IBOutlet weak var addSliderButtom:NSButton!
+    
+    @IBOutlet weak var removeSlideButton: NSButton!
+
+    
     let imageDirectoryLoader = ImageDirectoryLoader()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialFolderUrl:NSURL = NSURL.fileURL(withPath: "/Users/dongwu/Desktop/pictures", isDirectory: true) as NSURL
+        let initialFolderUrl:NSURL = NSURL.fileURL(withPath: "/Users/dong/Desktop/picture", isDirectory: true) as NSURL
         imageDirectoryLoader.loadDataForFolderWithUrl(folderURL: initialFolderUrl)
         configCollectionViewFlowLayout()
         
     }
     
+    override func viewDidDisappear() {
+//        collectionView.reloadData()
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-//        collectionView.reloadData()
+        collectionView.reloadData()
     }
     
     func loadDataForNewFolderWithUrl(folderURL: NSURL) {
@@ -45,6 +53,21 @@ class ViewController: NSViewController {
     }
     
     
+    func highlightItems(selected: Bool, atIndexPaths: Set<IndexPath>) {
+   
+        addSliderButtom.isEnabled = collectionView.selectionIndexPaths.count == 1
+        
+        removeSlideButton.isEnabled = !collectionView.selectionIndexes.isEmpty
+        
+        for indexPath in atIndexPaths{
+            guard let item = collectionView.item(at: indexPath) else {
+                continue
+            }
+            (item as! CollectionViewItem).setHighlight(selected: selected)
+        }
+    }
+
+    
     @IBAction func hiddenSessionAction(_ sender: Any) {
         let show = (sender as! NSButton).state
         
@@ -53,9 +76,71 @@ class ViewController: NSViewController {
         collectionView.reloadData()
     }
 
-    @IBAction func toggleSectionCollapse(_ sender: Any) {
-        collectionView.toggleSectionCollapse(sender)
+
+    
+
+    //MARK: - Add
+    private func insertAtIndexPathFromURLs(urls: [NSURL], atIndexPath: NSIndexPath) {
+     var indexPaths: Set<IndexPath> = []
+     let section = atIndexPath.section
+     var currentItem = atIndexPath.item
+
+     // 1
+     for url in urls {
+       // 2
+       let imageFile = ImageFile(url: url)
+       let currentIndexPath = NSIndexPath(forItem: currentItem, inSection: section)
+        imageDirectoryLoader.insertImage(image: imageFile, atIndexPath: currentIndexPath as IndexPath)
+        indexPaths.insert(currentIndexPath as IndexPath)
+       currentItem += 1
+     }
+     
+    collectionView.insertItems(at: indexPaths)
+        
+    
+     // 3
+   }
+
+    @IBAction func addSlide(sender: NSButton) {
+        // 4
+        let insertAtIndexPath = collectionView.selectionIndexPaths.first!
+        //5
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowsMultipleSelection = true;
+        openPanel.allowedFileTypes = ["public.image"]
+        openPanel.beginSheetModal(for: self.view.window!) { (response) -> Void in
+            guard response.rawValue == NSApplication.ModalResponse.OK.rawValue else {return}
+            self.insertAtIndexPathFromURLs(urls: openPanel.urls as [NSURL], atIndexPath: insertAtIndexPath as NSIndexPath)
+        }
+   }
+
+    //MARK: - remove
+    @IBAction func removeSlide(sender: NSButton) {
+        
+        let selectionIndexPaths = collectionView.selectionIndexPaths
+        if selectionIndexPaths.isEmpty {
+            return
+        }
+        
+        // 1
+        var selectionArray = Array(selectionIndexPaths)
+        
+        selectionArray.sort { (path1, path2) -> Bool in
+            return path1.compare(path2) == .orderedDescending
+        }
+        for itemIndexPath in selectionArray {
+            // 2
+            imageDirectoryLoader.removeImageAtIndexPath(indexPath: itemIndexPath)
+        }
+        
+        // 3
+        collectionView.deleteItems(at: selectionIndexPaths)
     }
+
+    
+    
     
     let itemSize:NSSize = NSSize(width: 160, height: 140)
     let lineSpace:CGFloat = 20.0;
@@ -121,33 +206,14 @@ extension ViewController:NSCollectionViewDelegate
 {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>)
     {
-        guard indexPaths.first != nil else {
-              return
-            }
-        for indexPath in indexPaths{
-            guard let item = collectionView.item(at: indexPath) else {
-                return
-            }
-            (item as! CollectionViewItem).setHighlight(selected: true)
-        }    // 3
-        
-      
+        highlightItems(selected: true, atIndexPaths: indexPaths)
     }
     
     
  
     func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>)
     {
-        guard indexPaths.first != nil else {
-             return
-           }
-        for indexPath in indexPaths{
-            guard let item = collectionView.item(at: indexPath) else {
-                 return
-               }
-            (item as! CollectionViewItem).setHighlight(selected: false)
-        }  
-      
+        highlightItems(selected: false, atIndexPaths: indexPaths)
     }
 
     

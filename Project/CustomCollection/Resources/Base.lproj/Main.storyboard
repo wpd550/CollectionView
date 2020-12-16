@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -750,26 +750,43 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JUf-AI-O4E">
-                                <rect key="frame" x="402" y="-3" width="75" height="32"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xj9-CS-tYG">
+                                <rect key="frame" x="418" y="-3" width="59" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xj9-CS-tYG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="addSlideWithSender:" target="XfG-lQ-9wD" id="uFX-PI-SiF"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ulb-Zd-7Fs">
+                                <rect key="frame" x="352" y="-3" width="79" height="32"/>
+                                <buttonCell key="cell" type="push" title="remove" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X2E-aW-GGL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="removeSlideWithSender:" target="XfG-lQ-9wD" id="aol-BV-GuP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="3WD-Lj-qfV"/>
                             <constraint firstItem="myH-cS-pW9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="4DD-W1-RdA"/>
+                            <constraint firstItem="Ulb-Zd-7Fs" firstAttribute="baseline" secondItem="JUf-AI-O4E" secondAttribute="baseline" id="aXI-cu-DkE"/>
                             <constraint firstAttribute="bottom" secondItem="Aq8-it-2XB" secondAttribute="bottom" constant="30" id="cQh-s2-yHx"/>
                             <constraint firstAttribute="trailing" secondItem="Aq8-it-2XB" secondAttribute="trailing" id="cns-Yl-4xK"/>
                             <constraint firstItem="JUf-AI-O4E" firstAttribute="centerY" secondItem="myH-cS-pW9" secondAttribute="centerY" id="htz-Fd-cx4"/>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="qXo-5q-vnE"/>
                             <constraint firstItem="myH-cS-pW9" firstAttribute="top" secondItem="Aq8-it-2XB" secondAttribute="bottom" constant="8" symbolic="YES" id="tug-af-cKy"/>
+                            <constraint firstItem="JUf-AI-O4E" firstAttribute="leading" secondItem="Ulb-Zd-7Fs" secondAttribute="trailing" constant="1" id="u7x-SE-LU6"/>
                             <constraint firstAttribute="trailing" secondItem="JUf-AI-O4E" secondAttribute="trailing" constant="10" id="ux1-ak-Et2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addSliderButtom" destination="JUf-AI-O4E" id="ZqE-vY-P60"/>
                         <outlet property="collectionView" destination="9l7-5n-CPZ" id="d8r-b8-zdo"/>
+                        <outlet property="removeSlideButton" destination="Ulb-Zd-7Fs" id="ExY-b9-BkX"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
