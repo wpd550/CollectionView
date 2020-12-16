@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -709,27 +709,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-it-2XB">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                                <clipView key="contentView" id="aBb-VW-6QH">
-                                    <rect key="frame" x="1" y="1" width="478" height="268"/>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-it-2XB">
+                                <rect key="frame" x="0.0" y="30" width="480" height="240"/>
+                                <clipView key="contentView" drawsBackground="NO" id="aBb-VW-6QH">
+                                    <rect key="frame" x="1" y="1" width="478" height="238"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="9l7-5n-CPZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="478" height="158"/>
+                                        <collectionView wantsLayer="YES" selectable="YES" allowsMultipleSelection="YES" id="9l7-5n-CPZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="478" height="238"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="gmS-vd-KFr">
                                                 <size key="itemSize" width="160" height="140"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" red="0.039215686270000001" green="0.70196078429999997" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="XfG-lQ-9wD" id="FWE-08-IZY"/>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="Wku-RV-DBI"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.039215686270000001" green="0.70196078429999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="rnx-ip-9pZ">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="xCN-IU-b74">
@@ -737,12 +739,33 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="myH-cS-pW9">
+                                <rect key="frame" x="18" y="5" width="134" height="18"/>
+                                <buttonCell key="cell" type="check" title="Selection Session" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9nH-dJ-I7N">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="hiddenSessionAction:" target="XfG-lQ-9wD" id="W8U-gT-cI2"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JUf-AI-O4E">
+                                <rect key="frame" x="402" y="-3" width="75" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xj9-CS-tYG">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="3WD-Lj-qfV"/>
-                            <constraint firstAttribute="bottom" secondItem="Aq8-it-2XB" secondAttribute="bottom" id="cQh-s2-yHx"/>
+                            <constraint firstItem="myH-cS-pW9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="4DD-W1-RdA"/>
+                            <constraint firstAttribute="bottom" secondItem="Aq8-it-2XB" secondAttribute="bottom" constant="30" id="cQh-s2-yHx"/>
                             <constraint firstAttribute="trailing" secondItem="Aq8-it-2XB" secondAttribute="trailing" id="cns-Yl-4xK"/>
+                            <constraint firstItem="JUf-AI-O4E" firstAttribute="centerY" secondItem="myH-cS-pW9" secondAttribute="centerY" id="htz-Fd-cx4"/>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="qXo-5q-vnE"/>
+                            <constraint firstItem="myH-cS-pW9" firstAttribute="top" secondItem="Aq8-it-2XB" secondAttribute="bottom" constant="8" symbolic="YES" id="tug-af-cKy"/>
+                            <constraint firstAttribute="trailing" secondItem="JUf-AI-O4E" secondAttribute="trailing" constant="10" id="ux1-ak-Et2"/>
                         </constraints>
                     </view>
                     <connections>

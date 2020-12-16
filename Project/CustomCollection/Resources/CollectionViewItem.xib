@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,13 +33,22 @@
                     <rect key="frame" x="0.0" y="20" width="575" height="239"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="IuY-5M-G16"/>
                 </imageView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-PA-hq8">
+                    <rect key="frame" x="18" y="223" width="18" height="18"/>
+                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rYK-Bg-1ul">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="k8b-hD-C9Q" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="2F1-YN-gYl"/>
                 <constraint firstItem="77v-2q-efR" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="9Xs-S3-dxi"/>
                 <constraint firstAttribute="bottom" secondItem="k8b-hD-C9Q" secondAttribute="bottom" id="ITB-0b-cm6"/>
                 <constraint firstAttribute="trailing" secondItem="k8b-hD-C9Q" secondAttribute="trailing" id="NNi-Or-8bv"/>
+                <constraint firstItem="ajd-PA-hq8" firstAttribute="leading" secondItem="77v-2q-efR" secondAttribute="leading" constant="20" id="UaN-Vk-dxB"/>
                 <constraint firstItem="77v-2q-efR" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="VAe-aP-uls"/>
+                <constraint firstItem="ajd-PA-hq8" firstAttribute="top" secondItem="77v-2q-efR" secondAttribute="top" constant="20" id="WJo-g9-8Li"/>
                 <constraint firstAttribute="bottom" secondItem="77v-2q-efR" secondAttribute="bottom" constant="20" id="rHt-YN-hRN"/>
                 <constraint firstAttribute="trailing" secondItem="77v-2q-efR" secondAttribute="trailing" id="wsl-qE-Ymo"/>
             </constraints>

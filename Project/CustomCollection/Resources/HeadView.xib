@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY" customClass="HeadView" customModule="CustomCollection" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Msl-ff-XD2">
+                    <rect key="frame" x="18" y="11" width="61" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Session" id="Tdi-f1-hK8">
+                        <font key="font" metaFont="system" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLi-d8-TOM">
+                    <rect key="frame" x="441" y="12" width="41" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Count" id="JLD-W2-JuS">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gx9-Hc-x2c">
+                    <rect key="frame" x="217" y="5" width="45" height="32"/>
+                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarGoDownTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YtD-lF-V0i">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Msl-ff-XD2" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="0o0-kB-qrs"/>
+                <constraint firstAttribute="trailing" secondItem="pLi-d8-TOM" secondAttribute="trailing" constant="20" symbolic="YES" id="58U-1U-tl8"/>
+                <constraint firstItem="gx9-Hc-x2c" firstAttribute="bottom" secondItem="pLi-d8-TOM" secondAttribute="bottom" id="CJy-j5-uek"/>
+                <constraint firstItem="pLi-d8-TOM" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="EvU-tH-N4L"/>
+                <constraint firstItem="gx9-Hc-x2c" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="224" id="yfp-mu-PQb"/>
+                <constraint firstItem="Msl-ff-XD2" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="zSK-oC-s9U"/>
+            </constraints>
+            <connections>
+                <outlet property="imageCount" destination="pLi-d8-TOM" id="i5H-dQ-Mcp"/>
+                <outlet property="sectionCollapseButton" destination="gx9-Hc-x2c" id="j1E-GM-w9m"/>
+                <outlet property="sectionTitle" destination="Msl-ff-XD2" id="Yo4-HQ-ur9"/>
+            </connections>
+            <point key="canvasLocation" x="-135" y="148"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSTouchBarGoDownTemplate" width="15" height="9"/>
+    </resources>
+</document>
