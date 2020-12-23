@@ -35,7 +35,6 @@ class ImageFile {
         {
             return nil;
         }
-        
         return NSImage(cgImage:thumbnailRef,size: NSSize.zero)
     }
     

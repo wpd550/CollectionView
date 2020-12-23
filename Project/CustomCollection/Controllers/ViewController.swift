@@ -23,7 +23,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialFolderUrl:NSURL = NSURL.fileURL(withPath: "/Users/dong/Desktop/picture", isDirectory: true) as NSURL
+        let initialFolderUrl:NSURL = NSURL.fileURL(withPath: "/Users/dongwu/Desktop/pictures", isDirectory: true) as NSURL
         imageDirectoryLoader.loadDataForFolderWithUrl(folderURL: initialFolderUrl)
         configCollectionViewFlowLayout()
         registDragAndDrop()
@@ -66,6 +66,7 @@ class ViewController: NSViewController {
         removeSlideButton.isEnabled = !isEmpty
         
         for indexPath in atIndexPaths{
+            print("indexPath = \(indexPath)")
             guard let item = collectionView.item(at: indexPath) else {
                 continue
             }
@@ -87,26 +88,26 @@ class ViewController: NSViewController {
 
     //MARK: - Add
     private func insertAtIndexPathFromURLs(urls: [NSURL], atIndexPath: NSIndexPath) {
-     var indexPaths: Set<IndexPath> = []
-     let section = atIndexPath.section
-     var currentItem = atIndexPath.item
-
-     // 1
-     for url in urls {
-       // 2
-       let imageFile = ImageFile(url: url)
-       let currentIndexPath = NSIndexPath(forItem: currentItem, inSection: section)
-        imageDirectoryLoader.insertImage(image: imageFile, atIndexPath: currentIndexPath as IndexPath)
-        indexPaths.insert(currentIndexPath as IndexPath)
-       currentItem += 1
-     }
-     
-    collectionView.insertItems(at: indexPaths)
+        var indexPaths: Set<IndexPath> = []
+        let section = atIndexPath.section
+        var currentItem = atIndexPath.item
         
+        // 1
+        for url in urls {
+            // 2
+            let imageFile = ImageFile(url: url)
+            let currentIndexPath = NSIndexPath(forItem: currentItem, inSection: section)
+            imageDirectoryLoader.insertImage(image: imageFile, atIndexPath: currentIndexPath as IndexPath)
+            indexPaths.insert(currentIndexPath as IndexPath)
+            currentItem += 1
+        }
+        
+        collectionView.insertItems(at: indexPaths)
+        
+        
+        // 3
+    }
     
-     // 3
-   }
-
     @IBAction func addSlide(sender: NSButton) {
         // 4
         let insertAtIndexPath = collectionView.selectionIndexPaths.first!
@@ -120,8 +121,8 @@ class ViewController: NSViewController {
             guard response.rawValue == NSApplication.ModalResponse.OK.rawValue else {return}
             self.insertAtIndexPathFromURLs(urls: openPanel.urls as [NSURL], atIndexPath: insertAtIndexPath as NSIndexPath)
         }
-   }
-
+    }
+    
     //MARK: - remove
     @IBAction func removeSlide(sender: NSButton) {
         
@@ -146,25 +147,17 @@ class ViewController: NSViewController {
     }
 
     
-    //MARK: - select
-    
-//    override func selectAll(_ sender: Any?) {
-//        collectionView.selectAll(sender)
-//    }
-//    
-//    override func dismiss(_ sender: Any?) {
-//        collectionView.deselectAll(sender)
-//    }
-//    
-    let itemSize:NSSize = NSSize(width: 160, height: 140)
-    let lineSpace:CGFloat = 20.0;
+
+
+    private let itemSize:NSSize = NSSize(width: 160, height: 140)
+    private let lineSpace:CGFloat = 20.0;
     
 }
 
 //MARK: - register drag && drop
 extension ViewController
 {
-    func registDragAndDrop(){
+    private func registDragAndDrop(){
         collectionView.registerForDraggedTypes([NSPasteboard.PasteboardType.URL])
         //对内部程序
         collectionView.setDraggingSourceOperationMask(NSDragOperation.every, forLocal: true)
@@ -223,10 +216,12 @@ extension ViewController:NSCollectionViewDelegateFlowLayout
         return imageDirectoryLoader.singleSectionMode ? NSZeroSize : NSSize(width: 1000, height: 40)
     }
     //
-//    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForFooterInSection section: Int) -> NSSize
-//    {
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForFooterInSection section: Int) -> NSSize
+    {
 //        return imageDirectoryLoader.singleSectionMode ? NSZeroSize : NSSize(width: 1000, height: 40)
-//    }
+        return NSZeroSize
+    }
 }
 
 
@@ -245,19 +240,20 @@ extension ViewController:NSCollectionViewDelegate
     {
         highlightItems(selected: false, atIndexPaths: indexPaths)
     }
-
+    
+    // 是否允许Drag
     func collectionView(_ collectionView: NSCollectionView, canDragItemsAt indexes: IndexSet, with event: NSEvent) -> Bool {
         return true
     }
     
-    
+    //Drag PasteBoard 记录信息
     func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt indexPath: IndexPath) -> NSPasteboardWriting? {
         let imageFile:ImageFile = imageDirectoryLoader.imageFileForIndexPath(indexPath: indexPath as NSIndexPath)
         
         return imageFile.url
     }
     
-    // 记录开始拖动时的indexPaths
+    // 记录开始拖动时的 indexPaths
     func collectionView(_ collectionView: NSCollectionView, draggingSession session: NSDraggingSession, willBeginAt screenPoint: NSPoint, forItemsAt indexPaths: Set<IndexPath>) {
         indexPathsOfItemsBeingDragged = indexPaths
     }
@@ -282,17 +278,20 @@ extension ViewController:NSCollectionViewDelegate
    
       if indexPathsOfItemsBeingDragged != nil {
         // 2
-        let indexPathOfFirstItemBeingDragged = indexPathsOfItemsBeingDragged.first!
-        var toIndexPath: NSIndexPath
-        if indexPathOfFirstItemBeingDragged.compare(indexPath as IndexPath) == .orderedAscending {
-          toIndexPath = NSIndexPath(forItem: indexPath.item-1, inSection: indexPath.section)
-        } else {
-          toIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section)
+        for currentIndex in indexPathsOfItemsBeingDragged{
+            let indexPathOfFirstItemBeingDragged = currentIndex
+            var toIndexPath: NSIndexPath
+            if indexPathOfFirstItemBeingDragged.compare(indexPath as IndexPath) == .orderedAscending {
+              toIndexPath = NSIndexPath(forItem: indexPath.item-1, inSection: indexPath.section)
+            } else {
+              toIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section)
+            }
+            // 3
+            imageDirectoryLoader.moveImageFromIndexPath(indexPath: indexPathOfFirstItemBeingDragged, toIndexPath: toIndexPath)
+            // 4
+            collectionView.moveItem(at: indexPathOfFirstItemBeingDragged, to: toIndexPath as IndexPath)
         }
-        // 3
-        imageDirectoryLoader.moveImageFromIndexPath(indexPath: indexPathOfFirstItemBeingDragged, toIndexPath: toIndexPath)
-        // 4
-        collectionView.moveItem(at: indexPathOfFirstItemBeingDragged, to: toIndexPath as IndexPath)
+       
       } else {
         // 5
         var droppedObjects = Array<NSURL>()

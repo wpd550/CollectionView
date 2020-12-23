@@ -179,7 +179,8 @@ class ImageDirectoryLoader: NSObject {
             }
         }
     }
-    //MARK: remove 
+    //MARK: - remove
+    @discardableResult
     func removeImageAtIndexPath(indexPath: IndexPath) -> ImageFile {
       let imageIndexInImageFiles = sectionsAttributesArray[indexPath.section].sectionOffset + indexPath.item
        
@@ -196,6 +197,8 @@ class ImageDirectoryLoader: NSObject {
     }
 
     
+    
+    //MARK: - move
     // 1
     func moveImageFromIndexPath(indexPath: IndexPath, toIndexPath: NSIndexPath) {
 

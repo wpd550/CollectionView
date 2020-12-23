@@ -15,7 +15,6 @@ class CollectionViewItem: NSCollectionViewItem {
             guard isViewLoaded else {
                 return
             }
-            
             if let  imageFile = imageFile{
                 imageView?.image = imageFile.thumbnail
                 textField?.stringValue = imageFile.fileName
@@ -23,7 +22,6 @@ class CollectionViewItem: NSCollectionViewItem {
                 imageView?.image = nil
                 textField?.stringValue = " "
             }
-            
         }
         
     }
@@ -42,6 +40,4 @@ class CollectionViewItem: NSCollectionViewItem {
     func setHighlight(selected: Bool) {
       view.layer?.borderWidth = selected ? 5.0 : 0.0
     }
-    
-    
 }
