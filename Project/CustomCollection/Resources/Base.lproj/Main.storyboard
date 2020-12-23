@@ -706,17 +706,17 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="CustomCollection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="588" height="347"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-it-2XB">
-                                <rect key="frame" x="0.0" y="30" width="480" height="240"/>
+                                <rect key="frame" x="0.0" y="30" width="588" height="317"/>
                                 <clipView key="contentView" drawsBackground="NO" id="aBb-VW-6QH">
-                                    <rect key="frame" x="1" y="1" width="478" height="238"/>
+                                    <rect key="frame" x="1" y="1" width="586" height="315"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView wantsLayer="YES" selectable="YES" allowsMultipleSelection="YES" id="9l7-5n-CPZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="478" height="238"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="586" height="315"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="gmS-vd-KFr">
                                                 <size key="itemSize" width="160" height="140"/>
@@ -750,7 +750,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JUf-AI-O4E">
-                                <rect key="frame" x="418" y="-3" width="59" height="32"/>
+                                <rect key="frame" x="526" y="-3" width="59" height="32"/>
                                 <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xj9-CS-tYG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -760,7 +760,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ulb-Zd-7Fs">
-                                <rect key="frame" x="352" y="-3" width="79" height="32"/>
+                                <rect key="frame" x="460" y="-3" width="79" height="32"/>
                                 <buttonCell key="cell" type="push" title="remove" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X2E-aW-GGL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -770,7 +770,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2HV-2g-6bf">
-                                <rect key="frame" x="168" y="-5" width="90" height="32"/>
+                                <rect key="frame" x="276" y="-5" width="90" height="32"/>
                                 <buttonCell key="cell" type="push" title="select All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FtO-pz-WZL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -780,7 +780,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mNv-V1-yqF">
-                                <rect key="frame" x="251" y="-4" width="103" height="32"/>
+                                <rect key="frame" x="359" y="-4" width="103" height="32"/>
                                 <buttonCell key="cell" type="push" title="deselect all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hTX-2a-Ewz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -789,9 +789,20 @@
                                     <action selector="deselectAll:" target="9l7-5n-CPZ" id="QM7-Lo-taj"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WkL-P4-a52">
+                                <rect key="frame" x="211" y="-3" width="75" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Wu-o2-lPD">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="test:" target="XfG-lQ-9wD" id="SCM-F3-5av"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="3WD-Lj-qfV"/>
+                            <constraint firstItem="2HV-2g-6bf" firstAttribute="leading" secondItem="WkL-P4-a52" secondAttribute="trailing" constant="4" id="3d7-3L-pFV"/>
                             <constraint firstItem="myH-cS-pW9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="4DD-W1-RdA"/>
                             <constraint firstItem="2HV-2g-6bf" firstAttribute="top" secondItem="myH-cS-pW9" secondAttribute="top" id="5cf-Rp-WRx"/>
                             <constraint firstItem="mNv-V1-yqF" firstAttribute="leading" secondItem="2HV-2g-6bf" secondAttribute="trailing" constant="7" id="Img-bC-pAE"/>
@@ -799,6 +810,7 @@
                             <constraint firstAttribute="bottom" secondItem="Aq8-it-2XB" secondAttribute="bottom" constant="30" id="cQh-s2-yHx"/>
                             <constraint firstItem="Ulb-Zd-7Fs" firstAttribute="leading" secondItem="mNv-V1-yqF" secondAttribute="trailing" constant="12" symbolic="YES" id="cYw-tl-yFz"/>
                             <constraint firstAttribute="trailing" secondItem="Aq8-it-2XB" secondAttribute="trailing" id="cns-Yl-4xK"/>
+                            <constraint firstItem="WkL-P4-a52" firstAttribute="baseline" secondItem="Ulb-Zd-7Fs" secondAttribute="baseline" id="fpT-rl-Jtg"/>
                             <constraint firstItem="JUf-AI-O4E" firstAttribute="centerY" secondItem="myH-cS-pW9" secondAttribute="centerY" id="htz-Fd-cx4"/>
                             <constraint firstItem="mNv-V1-yqF" firstAttribute="baseline" secondItem="myH-cS-pW9" secondAttribute="baseline" id="ou4-44-QTL"/>
                             <constraint firstItem="Aq8-it-2XB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="qXo-5q-vnE"/>
@@ -815,7 +827,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="129" y="693.5"/>
         </scene>
     </scenes>
 </document>
