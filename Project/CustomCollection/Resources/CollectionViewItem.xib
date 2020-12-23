@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CollectionViewItem" customModule="CustomCollection" customModuleProvider="target">
             <connections>
+                <outlet property="checkBox" destination="ajd-PA-hq8" id="10t-et-lCd"/>
                 <outlet property="imageView" destination="77v-2q-efR" id="S9S-p4-A7M"/>
                 <outlet property="textField" destination="k8b-hD-C9Q" id="3Kf-de-Rb5"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -39,6 +40,9 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkBoxAction:" target="-2" id="xld-G9-93W"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

@@ -8,7 +8,11 @@
 import Cocoa
 
 class CollectionViewItem: NSCollectionViewItem {
+    @IBOutlet weak open var checkBox: NSButton?
+    var action: Selector?
+    weak var target: AnyObject?
 
+    var indexPath:IndexPath?
     
     var imageFile:ImageFile?{
         didSet{
@@ -35,9 +39,22 @@ class CollectionViewItem: NSCollectionViewItem {
         view.layer?.borderWidth = 0.0
         // 2
         view.layer?.borderColor = NSColor.blue.cgColor
+        
+        //bind KVB模式
+        checkBox?.bind(NSBindingName(rawValue: #keyPath(NSButton.state)), to: self, withKeyPath: #keyPath(CollectionViewItem.isSelected), options: nil)
     }
     
     func setHighlight(selected: Bool) {
       view.layer?.borderWidth = selected ? 5.0 : 0.0
     }
+    
+    //MARK: - Action
+    
+    @IBAction func checkBoxAction(_ sender: Any) {
+        print("click checkBox button")
+    }
+    deinit {
+        checkBox?.unbind(NSBindingName(rawValue: #keyPath(NSButton.state)))
+    }
+    
 }

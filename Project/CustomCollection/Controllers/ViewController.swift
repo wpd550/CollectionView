@@ -164,6 +164,12 @@ extension ViewController
         //对外部程序
         collectionView.setDraggingSourceOperationMask(NSDragOperation.every, forLocal: false)
     }
+    
+    @objc private func selectIndexPath(_ indexPath:IndexPath)
+    {
+        var selectIndexPaths = collectionView.selectionIndexes
+        print(selectIndexPaths)
+    }
 }
 
 //MARK: - NSCollectionViewDataSource
@@ -188,6 +194,9 @@ extension ViewController : NSCollectionViewDataSource
         }
         let imageFile = imageDirectoryLoader.imageFileForIndexPath(indexPath: indexPath as NSIndexPath)
         collectionViewItem.imageFile = imageFile
+        collectionViewItem.indexPath = indexPath
+        collectionViewItem.target = self
+        collectionViewItem.action = #selector(selectIndexPath(_:))
         return collectionViewItem
     }
     
@@ -229,18 +238,19 @@ extension ViewController:NSCollectionViewDelegateFlowLayout
 
 extension ViewController:NSCollectionViewDelegate
 {
+    
+    //MARK: 选择事件
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>)
     {
         highlightItems(selected: true, atIndexPaths: indexPaths)
     }
-    
-    
- 
     func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>)
     {
         highlightItems(selected: false, atIndexPaths: indexPaths)
     }
     
+    
+    //MARK: 拖拽
     // 是否允许Drag
     func collectionView(_ collectionView: NSCollectionView, canDragItemsAt indexes: IndexSet, with event: NSEvent) -> Bool {
         return true
@@ -311,6 +321,5 @@ extension ViewController:NSCollectionViewDelegate
       indexPathsOfItemsBeingDragged = nil
     }
 
-    
 }
 
