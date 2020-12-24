@@ -122,7 +122,11 @@ class ViewController: NSViewController {
             self.insertAtIndexPathFromURLs(urls: openPanel.urls as [NSURL], atIndexPath: insertAtIndexPath as NSIndexPath)
         }
     }
-    
+
+    @IBAction func test(_ sender: Any) {
+        print("selects \(collectionView.selectionIndexPaths)")
+    }
+
     //MARK: - remove
     @IBAction func removeSlide(sender: NSButton) {
         
@@ -148,9 +152,13 @@ class ViewController: NSViewController {
 
     
 
-
     private let itemSize:NSSize = NSSize(width: 160, height: 140)
     private let lineSpace:CGFloat = 20.0;
+
+    //MARK: - select
+    
+    
+
     
 }
 
@@ -165,10 +173,30 @@ extension ViewController
         collectionView.setDraggingSourceOperationMask(NSDragOperation.every, forLocal: false)
     }
     
-    @objc private func selectIndexPath(_ indexPath:IndexPath)
+
+    
+    @objc func selectItem(at indexPath:IndexPath)
     {
-        var selectIndexPaths = collectionView.selectionIndexes
-        print(selectIndexPaths)
+        print("select at \(indexPath)")
+           
+        let item = collectionView.item(at: indexPath)
+
+        guard let collectionViewItem =  item as? CollectionViewItem else {
+            return
+        }
+        var selectArray = collectionView.selectionIndexPaths
+        if(selectArray.contains(indexPath))
+        {
+            selectArray.remove(indexPath)
+            collectionViewItem.setHighlight(selected: false)
+        }else
+        {
+            selectArray.insert(indexPath)
+            collectionViewItem.setHighlight(selected: true)
+        }
+
+        collectionView.selectionIndexPaths = selectArray
+
     }
 }
 
@@ -194,9 +222,11 @@ extension ViewController : NSCollectionViewDataSource
         }
         let imageFile = imageDirectoryLoader.imageFileForIndexPath(indexPath: indexPath as NSIndexPath)
         collectionViewItem.imageFile = imageFile
-        collectionViewItem.indexPath = indexPath
+
         collectionViewItem.target = self
-        collectionViewItem.action = #selector(selectIndexPath(_:))
+        collectionViewItem.action = #selector(selectItem(at:))
+        collectionViewItem.indexPath = indexPath
+
         return collectionViewItem
     }
     

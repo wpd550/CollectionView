@@ -14,6 +14,9 @@ class CollectionViewItem: NSCollectionViewItem {
 
     var indexPath:IndexPath?
     
+  
+    
+  
     var imageFile:ImageFile?{
         didSet{
             guard isViewLoaded else {
@@ -40,8 +43,10 @@ class CollectionViewItem: NSCollectionViewItem {
         // 2
         view.layer?.borderColor = NSColor.blue.cgColor
         
+
         //bind KVB模式
         checkBox?.bind(NSBindingName(rawValue: #keyPath(NSButton.state)), to: self, withKeyPath: #keyPath(CollectionViewItem.isSelected), options: nil)
+
     }
     
     func setHighlight(selected: Bool) {
@@ -51,10 +56,18 @@ class CollectionViewItem: NSCollectionViewItem {
     //MARK: - Action
     
     @IBAction func checkBoxAction(_ sender: Any) {
-        print("click checkBox button")
+        print("select \(String(describing: indexPath))")
+
+        if self.action != nil{
+//            NSApp.target(forAction: self.action!)
+            NSApp.sendAction(action!, to: target, from: indexPath)
+          
+        }
     }
     deinit {
         checkBox?.unbind(NSBindingName(rawValue: #keyPath(NSButton.state)))
     }
+    
+
     
 }
